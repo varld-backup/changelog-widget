@@ -6,7 +6,7 @@
 
 <p align="center">
   The widget sdk can be used to attach a changelog widget to an element, like a button. When the user clicks that element, a changelog-widget will pop up. <br />
-  This SDK is powered by <a href="https://github.com/varld/changes-core">the Core SDK</a>.
+  This SDK is powered by <a href="https://github.com/varld/changelog-core">the Core SDK</a>.
 </p>
 
 ## Useful Links
