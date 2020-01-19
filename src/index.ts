@@ -37,19 +37,22 @@ class WidgetSDK extends CoreSDK {
   private element: HTMLDivElement;
   private wrapper: HTMLElement;
   public isOpen: boolean;
+  private clickHandler: () => void;
 
   constructor(opts: WidgetOpts) {
     super(Object.assign(opts, {
       mode: 'widget'
     }));
 
-    this.wrapper = opts.element;
-    this.wrapper.style.position = 'relative';
-    this.wrapper.addEventListener('click', () => {
+    this.clickHandler = () => {
       if (this.removed) return;
 
       this.toggle();
-    });
+    };
+
+    this.wrapper = opts.element;
+    this.wrapper.style.position = 'relative';
+    this.wrapper.addEventListener('click', this.clickHandler);
 
     // Create an container-element for the iframe
     this.element = document.createElement('div');
@@ -141,6 +144,15 @@ class WidgetSDK extends CoreSDK {
     if (!el) {
       createStyles();
     }
+  }
+
+  public remove() {
+    if (!this.element) return false;
+
+    this.wrapper.removeEventListener('click', this.clickHandler);
+    this.element.remove();
+
+    return super.remove();
   }
 
   public open() {
