@@ -57,6 +57,8 @@ typings/
 .rpt2_cache/
 .rts2_cache_cjs/
 .rts2_cache_es/
+.rts2_cache_esm/
+.rts2_cache_iife/
 .rts2_cache_umd/
 
 # Optional REPL history

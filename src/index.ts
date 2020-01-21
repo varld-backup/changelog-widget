@@ -44,10 +44,12 @@ class WidgetSDK extends CoreSDK {
       mode: 'widget'
     }));
 
+    let self = this;
+
     this.clickHandler = () => {
       if (this.removed) return;
 
-      this.toggle();
+      self.toggle();
     };
 
     this.wrapper = opts.element;
@@ -80,23 +82,23 @@ class WidgetSDK extends CoreSDK {
     this.addSizeClass();
 
     setInterval(() => {
-      if (this.removed) return;
+      if (self.removed) return;
 
-      this.addSizeClass();
+      self.addSizeClass();
     }, 200);
 
     document.addEventListener('click', e => {
       // Close widget on outside-click
-      if (!this.removed && this.isOpen) {
+      if (!self.removed && self.isOpen) {
         let currentTarget = e.target;
-        let isWrapper = currentTarget == this.wrapper;
+        let isWrapper = currentTarget == self.wrapper;
 1
-        while (currentTarget && currentTarget != this.wrapper && currentTarget != document.body) {
+        while (currentTarget && currentTarget != self.wrapper && currentTarget != document.body) {
           try {
             // @ts-ignore
             currentTarget = currentTarget.parentNode;
 
-            if (currentTarget == this.wrapper) {
+            if (currentTarget == self.wrapper) {
               isWrapper = true;
             }
           } catch (err) {
@@ -105,20 +107,20 @@ class WidgetSDK extends CoreSDK {
         }
 
         if (!isWrapper) {
-          this.close();
+          self.close();
         }
       }
     });
 
     window.addEventListener('resize', () => {
-      if (this.removed) return;
+      if (self.removed) return;
 
-      this.addSizeClass();
+      self.addSizeClass();
     });
 
     this.on('message', message => {
       if (message.type == 'changes-close') {
-        this.close();
+        self.close();
       }
     });
   }
