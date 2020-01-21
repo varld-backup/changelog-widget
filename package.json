@@ -1,11 +1,12 @@
 {
   "name": "changelog-widget",
-  "version": "0.0.6-beta",
+  "version": "0.0.7-beta",
   "license": "MIT",
   "source": "src/index.ts",
   "main": "dist/index.js",
+  "module": "dist/index.m.js",
   "unpkg": "dist/index.umd.js",
-  "types": "dist/index.d.ts",
+  "browser": "dist/index.umd.js",
   "author": {
     "name": "Tobias Herber",
     "url": "https://herber.space"
@@ -18,13 +19,18 @@
     "url": "https://github.com/varld/changelog-widget.git"
   },
   "scripts": {
-    "build": "microbundle -f cjs,umd",
-    "dev": "microbundle watch -f cjs,umd",
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
     "test": "jest"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^11.0.1",
+    "@rollup/plugin-node-resolve": "^7.0.0",
     "jest": "^24.9.0",
-    "microbundle": "^0.11.0"
+    "rollup": "^1.29.0",
+    "rollup-plugin-typescript": "^1.0.1",
+    "tslib": "^1.10.0",
+    "typescript": "^3.7.5"
   },
   "dependencies": {
     "changelog-core": "^0.0.6-beta"
